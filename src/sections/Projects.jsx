@@ -6,23 +6,41 @@ const projects = [
     title: "Portfolio Website", 
     desc: "My personal portfolio built with React, Tailwind CSS, and Framer Motion.", 
     status: "Live",
-    link: "https://portfolio-website-azure-iota-14.vercel.app" // ✅ Synchronized portfolio deployment link
+    link: "https://portfolio-website-azure-iota-14.vercel.app"
   },
   { 
-    title: "AI SaaS Platform", 
-    desc: "An advanced AI-powered software-as-a-service application.", 
+    title: "Nexus Core AI Engine", 
+    desc: "A premium Full-Stack AI Chat platform featuring secure user authentication schemas, cloud database storage, and structured Llama-3 model responses.", 
+    status: "Live", 
+    link: "https://ai-chat-bot-delta-lilac.vercel.app" 
+  },
+  { 
+    title: "E-Commerce Platform", 
+    desc: "A comprehensive digital marketplace engine featuring dynamic product catalogs, shopping cart logic, and checkout payment gateway workflows.", 
     status: "Coming Soon",
     link: "#"
   },
   { 
-    title: "Nexus Core AI Engine", // ✅ Rebranded from Intelligent Chatbot
-    desc: "A premium Full-Stack AI Chat platform featuring secure user authentication schemas, cloud database storage, and structured Llama-3 model responses.", 
-    status: "Live", // ✅ Set status to Live to unlock animation cards
-    link: "https://ai-chat-bot-delta-lilac.vercel.app" // ✅ Production Chat Engine URL
+    title: "Task Manager", 
+    desc: "A production-grade productivity dashboard designed to handle task prioritization, kanban states, and individual deadlines tracking.", 
+    status: "Coming Soon",
+    link: "#"
+  },
+  { 
+    title: "Jarvis AI", 
+    desc: "An intelligent voice-activated automated desktop companion built to parse personalized operational scripts and custom commands.", 
+    status: "Coming Soon",
+    link: "#"
+  },
+  { 
+    title: "Interview Prep AI", 
+    desc: "An advanced automated evaluation engine tailored to mock technical interviews, track speech metrics, and render real-time diagnostic performance metrics.", 
+    status: "Coming Soon",
+    link: "#"
   },
 ];
 
-// Shaking/Wobble effect jab card par hover karein (sirf Coming Soon ke liye)
+// Shaking/Wobble effect jab card par hover karein (Coming Soon projects ke liye)
 const shakeAnimation = {
   hover: {
     x: [0, -4, 4, -4, 4, 0],
@@ -35,7 +53,8 @@ export default function Projects() {
     <section id="projects" className="py-20 scroll-mt-20">
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Projects</h2>
       
-      <div className="grid md:grid-cols-3 gap-8">
+      {/* Managed grid layout for up to 6 clean production responsive project frames */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => {
           const isLive = project.status === "Live";
           
@@ -45,7 +64,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
               
               // Live ke liye scaling animation aur Coming Soon ke liye shaking/glow effect
               whileHover={isLive ? { scale: 1.03 } : "hover"}
