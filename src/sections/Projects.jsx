@@ -2,12 +2,27 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const projects = [
-  { title: "Portfolio Website", desc: "My personal portfolio built with React, Tailwind CSS, and Framer Motion.", status: "Live" },
-  { title: "AI SaaS Platform", desc: "An advanced AI-powered software-as-a-service application.", status: "Coming Soon" },
-  { title: "Intelligent Chatbot", desc: "A smart AI chatbot trained to handle customized workflows.", status: "Coming Soon" },
+  { 
+    title: "Portfolio Website", 
+    desc: "My personal portfolio built with React, Tailwind CSS, and Framer Motion.", 
+    status: "Live",
+    link: "https://portfolio-website-azure-iota-14.vercel.app" // ✅ Synchronized portfolio deployment link
+  },
+  { 
+    title: "AI SaaS Platform", 
+    desc: "An advanced AI-powered software-as-a-service application.", 
+    status: "Coming Soon",
+    link: "#"
+  },
+  { 
+    title: "Nexus Core AI Engine", // ✅ Rebranded from Intelligent Chatbot
+    desc: "A premium Full-Stack AI Chat platform featuring secure user authentication schemas, cloud database storage, and structured Llama-3 model responses.", 
+    status: "Live", // ✅ Set status to Live to unlock animation cards
+    link: "https://ai-chat-bot-delta-lilac.vercel.app" // ✅ Production Chat Engine URL
+  },
 ];
 
-// Shaking/Wobble effect jab card ho hoover karein (sirf Coming Soon ke liye)
+// Shaking/Wobble effect jab card par hover karein (sirf Coming Soon ke liye)
 const shakeAnimation = {
   hover: {
     x: [0, -4, 4, -4, 4, 0],
@@ -63,7 +78,12 @@ export default function Projects() {
 
               <div className="relative z-10">
                 {isLive ? (
-                  <a href="#" className="text-blue-500 dark:text-blue-400 font-medium text-sm hover:underline flex items-center gap-1">
+                  <a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="text-blue-500 dark:text-blue-400 font-medium text-sm hover:underline flex items-center gap-1"
+                  >
                     View Project &rarr;
                   </a>
                 ) : (
