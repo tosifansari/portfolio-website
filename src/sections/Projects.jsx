@@ -15,10 +15,10 @@ const projects = [
     link: "https://ai-chat-bot-delta-lilac.vercel.app" 
   },
   { 
-    title: "E-Commerce Platform", 
-    desc: "A comprehensive digital marketplace engine featuring dynamic product catalogs, shopping cart logic, and checkout payment gateway workflows.", 
-    status: "Coming Soon",
-    link: "#"
+    title: "Vintage Core Store", 
+    desc: "A full-stack MERN e-commerce application featuring complete authentication pipelines, product catalog routing, state management, and live order ledgers.", 
+    status: "Live",
+    link: "https://vintage-core-store.vercel.app"
   },
   { 
     title: "Task Manager", 
