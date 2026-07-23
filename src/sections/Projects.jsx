@@ -64,7 +64,7 @@ const projects = [
   }
 ];
 
-// Shaking/Wobble effect for Coming Soon projects on click/hover
+// Shaking/Wobble effect jab card par hover karein (Coming Soon projects ke liye)
 const shakeAnimation = {
   hover: {
     x: [0, -4, 4, -4, 4, 0],
@@ -90,54 +90,33 @@ export default function Projects() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.05, duration: 0.5 }}
               
-              whileHover={isLive ? { scale: 1.025, y: -4 } : "hover"}
+              // Live ke liye scaling animation aur Coming Soon ke liye shaking/glow effect
+              whileHover={isLive ? { scale: 1.03 } : "hover"}
               variants={!isLive ? shakeAnimation : {}}
               
               className={`p-6 bg-white dark:bg-gray-900 border rounded-2xl shadow-sm flex flex-col justify-between transition-all duration-300 relative overflow-hidden group
                 ${isLive 
-                  ? 'border-gray-200 dark:border-gray-800 hover:border-blue-500/60 dark:hover:border-blue-400/60 hover:shadow-xl hover:shadow-blue-500/10' 
-                  : 'border-gray-200 dark:border-amber-500/20 hover:border-amber-400/70 hover:shadow-xl hover:shadow-amber-500/10'
+                  ? 'border-gray-200 dark:border-gray-800 hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:shadow-lg hover:shadow-blue-500/5' 
+                  : 'border-gray-200 dark:border-gray-800/80 opacity-75 hover:opacity-100 hover:border-amber-500/40 dark:hover:border-amber-400/30 hover:shadow-md hover:shadow-amber-500/5 cursor-not-allowed'
                 }`}
             >
-              {/* ⚡ Unique Light Sweep / Shimmer Effect (Hover karne par sweep lega) */}
-              <div className={`absolute -inset-full top-0 block h-full w-1/2 z-20 transform -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none ${
-                isLive ? 'bg-gradient-to-r from-transparent via-blue-400/15 to-transparent' : 'bg-gradient-to-r from-transparent via-amber-400/20 to-transparent'
-              }`} />
-
-              {/* 🌟 Background Glow Layer */}
-              <div className={`absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${
-                isLive 
-                  ? 'bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-indigo-500/0' 
-                  : 'bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-yellow-500/0'
-              }`} />
+              {/* Background glowing indicator for coming soon */}
+              {!isLive && (
+                <div className="absolute -inset-px bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              )}
 
               <div className="relative z-10">
-                <div className="flex items-center justify-between mb-4">
-                  {/* Status Badge */}
-                  {isLive ? (
-                    <span className="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
-                      {project.status}
-                    </span>
-                  ) : (
-                    /* 👑 Unique Animated Border Badge for Coming Soon */
-                    <span className="relative inline-flex items-center justify-center overflow-hidden rounded-full p-[1px]">
-                      <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#F59E0B_0%,#FCD34D_50%,#F59E0B_100%)]" />
-                      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gray-900 px-3 py-1 text-[11px] font-bold text-amber-400 backdrop-blur-3xl gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-                        {project.status}
-                      </span>
-                    </span>
-                  )}
-                </div>
+                <span className={`text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full 
+                  ${isLive 
+                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
+                    : "bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300"
+                  }`}
+                >
+                  {project.status}
+                </span>
                 
-                <h3 className={`text-xl font-bold mb-2 transition-colors ${
-                  isLive ? 'group-hover:text-blue-400' : 'group-hover:text-amber-400'
-                }`}>
-                  {project.title}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">
-                  {project.desc}
-                </p>
+                <h3 className="text-xl font-bold mt-4 mb-2">{project.title}</h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">{project.desc}</p>
               </div>
 
               <div className="relative z-10">
@@ -146,12 +125,12 @@ export default function Projects() {
                     href={project.link} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="text-blue-500 dark:text-blue-400 font-medium text-sm hover:underline flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                    className="text-blue-500 dark:text-blue-400 font-medium text-sm hover:underline flex items-center gap-1"
                   >
                     View Project &rarr;
                   </a>
                 ) : (
-                  <span className="text-xs text-amber-400/90 font-medium flex items-center gap-1 group-hover:text-amber-300 transition-colors">
+                  <span className="text-xs text-gray-400 dark:text-gray-500 font-medium flex items-center gap-1 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
                     🔒 Under Development
                   </span>
                 )}
@@ -160,15 +139,6 @@ export default function Projects() {
           );
         })}
       </div>
-
-      {/* Embedded CSS Animation Keyframes */}
-      <style>{`
-        @keyframes shimmer {
-          100% {
-            left: 150%;
-          }
-        }
-      `}</style>
     </section>
   );
 }
