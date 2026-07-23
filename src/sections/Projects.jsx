@@ -24,20 +24,44 @@ const projects = [
     title: "Task Matrix Engine", 
     desc: "Enterprise-grade Kanban workflow manager featuring smooth drag-and-drop mechanics, JWT multi-user authentication, priority filtering, and live state synchronization with MongoDB Atlas.", 
     status: "Live",
-    link: "https://task-matrix-engine.vercel.app" // 
+    link: "https://your-task-matrix.vercel.app" // Replace with actual live Vercel link
   },
   { 
-    title: "Jarvis AI", 
-    desc: "An intelligent voice-activated automated desktop companion built to parse personalized operational scripts and custom commands.", 
+    title: "Jarvis AI Assistant", 
+    desc: "Autonomous voice companion featuring web & YouTube summarization, PDF analysis, real-time weather & news updates, persistent memory, and code explanation.", 
     status: "Coming Soon",
     link: "#"
   },
   { 
-    title: "Interview Prep AI", 
-    desc: "An advanced automated evaluation engine tailored to mock technical interviews, track speech metrics, and render real-time diagnostic performance metrics.", 
+    title: "AI Interview Prep Platform", 
+    desc: "AI evaluation engine featuring resume parsing, dynamically generated mock technical interview questions, interactive mock mode, and real-time performance feedback.", 
     status: "Coming Soon",
     link: "#"
   },
+  { 
+    title: "Smart Expense Tracker", 
+    desc: "Comprehensive financial dashboard with dynamic analytics charts, automated monthly reports, user authentication, and complete CRUD transaction management.", 
+    status: "Coming Soon",
+    link: "#"
+  },
+  { 
+    title: "Real-Time Chat Engine", 
+    desc: "High-concurrency instant messenger powered by Socket.IO featuring live online status, real-time typing indicators, and secure file sharing capabilities.", 
+    status: "Coming Soon",
+    link: "#"
+  },
+  { 
+    title: "URL Shortener & Analytics", 
+    desc: "Full-stack link management tool featuring custom short links, real-time click analytics dashboard, dynamic QR code generation, and protected user routes.", 
+    status: "Coming Soon",
+    link: "#"
+  },
+  { 
+    title: "Markdown Notes App", 
+    desc: "Rich text note-taking workspace supporting full Markdown rendering, tag-based taxonomy categorization, global search, and instant persistence.", 
+    status: "Coming Soon",
+    link: "#"
+  }
 ];
 
 // Shaking/Wobble effect jab card par hover karein (Coming Soon projects ke liye)
@@ -53,7 +77,7 @@ export default function Projects() {
     <section id="projects" className="py-20 scroll-mt-20">
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Projects</h2>
       
-      {/* Managed grid layout for up to 6 clean production responsive project frames */}
+      {/* Managed grid layout for production responsive project frames */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => {
           const isLive = project.status === "Live";
@@ -64,7 +88,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              transition={{ delay: index * 0.05, duration: 0.5 }}
               
               // Live ke liye scaling animation aur Coming Soon ke liye shaking/glow effect
               whileHover={isLive ? { scale: 1.03 } : "hover"}
