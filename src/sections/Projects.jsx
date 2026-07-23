@@ -70,11 +70,10 @@ const shakeAnimation = {
 export default function Projects() {
   const [filter, setFilter] = useState('Featured');
 
-  // Filter Logic: Default par sirf Live projects dikhenge!
   const filteredProjects = projects.filter((project) => {
     if (filter === 'Featured') return project.status === 'Live';
     if (filter === 'Upcoming') return project.status === 'Coming Soon';
-    return true; // 'All'
+    return true;
   });
 
   return (
@@ -82,14 +81,14 @@ export default function Projects() {
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">Projects</h2>
       
       {/* Category Filter Tabs */}
-      <div className="flex justify-center gap-2 mb-10">
+      <div className="flex justify-center gap-2 mb-12">
         {['Featured', 'Upcoming', 'All'].map((tab) => (
           <button
             key={tab}
             onClick={() => setFilter(tab)}
             className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
               filter === tab
-                ? 'bg-blue-600 text-white shadow-md'
+                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25'
                 : 'bg-slate-800/40 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
             }`}
           >
@@ -109,14 +108,20 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05, duration: 0.4 }}
-              whileHover={isLive ? { scale: 1.02 } : "hover"}
+              whileHover={isLive ? { scale: 1.02, y: -4 } : "hover"}
               variants={!isLive ? shakeAnimation : {}}
-              className={`p-6 bg-white dark:bg-gray-900 border rounded-2xl shadow-sm flex flex-col justify-between transition-all duration-300 relative overflow-hidden group ${
+              className={`p-6 bg-white dark:bg-gray-900/90 backdrop-blur-xl border rounded-2xl shadow-sm flex flex-col justify-between transition-all duration-300 relative overflow-hidden group ${
                 isLive 
-                  ? 'border-gray-200 dark:border-gray-800 hover:border-blue-500/50' 
+                  ? 'border-gray-200 dark:border-gray-800 hover:border-blue-500/60 dark:hover:border-blue-400/60 hover:shadow-xl hover:shadow-blue-500/10' 
                   : 'border-gray-200 dark:border-gray-800/80 opacity-80 cursor-not-allowed'
               }`}
             >
+              {/* ⚡ Shiny Metallic Light Sweep Bar Effect (Triggers on Hover) */}
+              <div className="absolute -inset-full top-0 block h-full w-1/2 z-20 transform -skew-x-12 bg-gradient-to-r from-transparent via-white/20 dark:via-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
+
+              {/* Glowing Background Glow Indicator */}
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-indigo-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
               <div className="relative z-10">
                 <span className={`text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full ${
                   isLive 
@@ -126,8 +131,12 @@ export default function Projects() {
                   {project.status}
                 </span>
                 
-                <h3 className="text-xl font-bold mt-4 mb-2">{project.title}</h3>
-                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">{project.desc}</p>
+                <h3 className="text-xl font-bold mt-4 mb-2 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">
+                  {project.desc}
+                </p>
               </div>
 
               <div className="relative z-10">
@@ -136,7 +145,7 @@ export default function Projects() {
                     href={project.link} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="text-blue-500 font-medium text-sm hover:underline flex items-center gap-1"
+                    className="text-blue-500 font-medium text-sm hover:underline flex items-center gap-1 group-hover:translate-x-1 transition-transform"
                   >
                     View Project &rarr;
                   </a>
@@ -150,6 +159,15 @@ export default function Projects() {
           );
         })}
       </div>
+
+      {/* Embedded CSS Keyframes for Guaranteed Shimmer Animation */}
+      <style>{`
+        @keyframes shimmer {
+          100% {
+            left: 150%;
+          }
+        }
+      `}</style>
     </section>
   );
 }
