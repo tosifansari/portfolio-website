@@ -21,10 +21,10 @@ const projects = [
     link: "https://vintage-core-store.vercel.app"
   },
   { 
-    title: "Task Manager", 
-    desc: "A production-grade productivity dashboard designed to handle task prioritization, kanban states, and individual deadlines tracking.", 
-    status: "Coming Soon",
-    link: "#"
+    title: "Task Matrix Engine", 
+    desc: "Enterprise-grade Kanban workflow manager featuring smooth drag-and-drop mechanics, JWT multi-user authentication, priority filtering, and live state synchronization with MongoDB Atlas.", 
+    status: "Live",
+    link: "https://task-matrix-engine.vercel.app" // 
   },
   { 
     title: "Jarvis AI", 
