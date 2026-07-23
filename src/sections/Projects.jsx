@@ -88,7 +88,7 @@ export default function Projects() {
             onClick={() => setFilter(tab)}
             className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
               filter === tab
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25'
+                ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/25 font-bold'
                 : 'bg-slate-800/40 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
             }`}
           >
@@ -108,30 +108,48 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05, duration: 0.4 }}
-              whileHover={isLive ? { scale: 1.02, y: -4 } : "hover"}
+              whileHover={{ scale: 1.025, y: -4 }}
               variants={!isLive ? shakeAnimation : {}}
-              className={`p-6 bg-white dark:bg-gray-900/90 backdrop-blur-xl border rounded-2xl shadow-sm flex flex-col justify-between transition-all duration-300 relative overflow-hidden group ${
+              className={`p-6 bg-white dark:bg-slate-900/90 backdrop-blur-xl border rounded-2xl shadow-sm flex flex-col justify-between transition-all duration-300 relative overflow-hidden group ${
                 isLive 
                   ? 'border-gray-200 dark:border-gray-800 hover:border-blue-500/60 dark:hover:border-blue-400/60 hover:shadow-xl hover:shadow-blue-500/10' 
-                  : 'border-gray-200 dark:border-gray-800/80 opacity-80 cursor-not-allowed'
+                  : 'border-gray-200 dark:border-amber-500/20 hover:border-amber-400/80 hover:shadow-2xl hover:shadow-amber-500/20'
               }`}
             >
-              {/* ⚡ Shiny Metallic Light Sweep Bar Effect (Triggers on Hover) */}
-              <div className="absolute -inset-full top-0 block h-full w-1/2 z-20 transform -skew-x-12 bg-gradient-to-r from-transparent via-white/20 dark:via-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
+              {/* ⚡ Golden Light Sweep Bar (Triggers on Hover for Coming Soon cards) */}
+              <div className={`absolute -inset-full top-0 block h-full w-1/2 z-20 transform -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none ${
+                isLive ? 'bg-gradient-to-r from-transparent via-white/20 dark:via-blue-400/20 to-transparent' : 'bg-gradient-to-r from-transparent via-amber-400/30 to-transparent'
+              }`} />
 
-              {/* Glowing Background Glow Indicator */}
-              <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-indigo-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              {/* 🌟 Golden Glow Layer for Coming Soon / Blue Glow for Live */}
+              <div className={`absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${
+                isLive 
+                  ? 'bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-indigo-500/0' 
+                  : 'bg-gradient-to-r from-amber-500/10 via-yellow-500/20 to-amber-500/0'
+              }`} />
 
               <div className="relative z-10">
-                <span className={`text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full ${
-                  isLive 
-                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
-                    : "bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400"
-                }`}>
-                  {project.status}
-                </span>
+                <div className="flex items-center justify-between">
+                  {/* Status Badge */}
+                  {isLive ? (
+                    <span className="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                      {project.status}
+                    </span>
+                  ) : (
+                    /* 👑 Shiny Glowing Coming Soon Badge */
+                    <span className="relative inline-flex items-center justify-center overflow-hidden rounded-full p-[1px] focus:outline-none">
+                      <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#F59E0B_0%,#FCD34D_50%,#F59E0B_100%)]" />
+                      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950/90 px-3 py-1 text-[11px] font-bold text-amber-400 backdrop-blur-3xl gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                        {project.status}
+                      </span>
+                    </span>
+                  )}
+                </div>
                 
-                <h3 className="text-xl font-bold mt-4 mb-2 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className={`text-xl font-bold mt-4 mb-2 transition-colors ${
+                  isLive ? 'group-hover:text-blue-500 dark:group-hover:text-blue-400' : 'group-hover:text-amber-400'
+                }`}>
                   {project.title}
                 </h3>
                 <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">
@@ -150,7 +168,7 @@ export default function Projects() {
                     View Project &rarr;
                   </a>
                 ) : (
-                  <span className="text-xs text-gray-400 font-medium flex items-center gap-1">
+                  <span className="text-xs text-amber-400/90 font-medium flex items-center gap-1 group-hover:text-amber-300 transition-colors">
                     🔒 Under Development
                   </span>
                 )}
@@ -160,7 +178,7 @@ export default function Projects() {
         })}
       </div>
 
-      {/* Embedded CSS Keyframes for Guaranteed Shimmer Animation */}
+      {/* Keyframe Animations Injection */}
       <style>{`
         @keyframes shimmer {
           100% {
