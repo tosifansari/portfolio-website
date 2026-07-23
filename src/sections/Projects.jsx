@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const projects = [
@@ -6,65 +6,60 @@ const projects = [
     title: "Portfolio Website", 
     desc: "My personal portfolio built with React, Tailwind CSS, and Framer Motion.", 
     status: "Live",
+    category: "Frontend",
     link: "https://portfolio-website-azure-iota-14.vercel.app"
   },
   { 
     title: "Nexus Core AI Engine", 
     desc: "A premium Full-Stack AI Chat platform featuring secure user authentication schemas, cloud database storage, and structured Llama-3 model responses.", 
     status: "Live", 
+    category: "AI & Fullstack",
     link: "https://ai-chat-bot-delta-lilac.vercel.app" 
   },
   { 
     title: "Vintage Core Store", 
     desc: "A full-stack MERN e-commerce application featuring complete authentication pipelines, product catalog routing, state management, and live order ledgers.", 
     status: "Live",
+    category: "MERN",
     link: "https://vintage-core-store.vercel.app"
   },
   { 
     title: "Task Matrix Engine", 
     desc: "Enterprise-grade Kanban workflow manager featuring smooth drag-and-drop mechanics, JWT multi-user authentication, priority filtering, and live state synchronization with MongoDB Atlas.", 
     status: "Live",
-    link: "https://your-task-matrix.vercel.app" // Replace with actual live Vercel link
+    category: "MERN",
+    link: "https://your-task-matrix.vercel.app" 
   },
   { 
     title: "Jarvis AI Assistant", 
     desc: "Autonomous voice companion featuring web & YouTube summarization, PDF analysis, real-time weather & news updates, persistent memory, and code explanation.", 
     status: "Coming Soon",
+    category: "Upcoming",
     link: "#"
   },
   { 
     title: "AI Interview Prep Platform", 
     desc: "AI evaluation engine featuring resume parsing, dynamically generated mock technical interview questions, interactive mock mode, and real-time performance feedback.", 
     status: "Coming Soon",
+    category: "Upcoming",
     link: "#"
   },
   { 
     title: "Smart Expense Tracker", 
     desc: "Comprehensive financial dashboard with dynamic analytics charts, automated monthly reports, user authentication, and complete CRUD transaction management.", 
     status: "Coming Soon",
+    category: "Upcoming",
     link: "#"
   },
   { 
     title: "Real-Time Chat Engine", 
     desc: "High-concurrency instant messenger powered by Socket.IO featuring live online status, real-time typing indicators, and secure file sharing capabilities.", 
     status: "Coming Soon",
-    link: "#"
-  },
-  { 
-    title: "URL Shortener & Analytics", 
-    desc: "Full-stack link management tool featuring custom short links, real-time click analytics dashboard, dynamic QR code generation, and protected user routes.", 
-    status: "Coming Soon",
-    link: "#"
-  },
-  { 
-    title: "Markdown Notes App", 
-    desc: "Rich text note-taking workspace supporting full Markdown rendering, tag-based taxonomy categorization, global search, and instant persistence.", 
-    status: "Coming Soon",
+    category: "Upcoming",
     link: "#"
   }
 ];
 
-// Shaking/Wobble effect jab card par hover karein (Coming Soon projects ke liye)
 const shakeAnimation = {
   hover: {
     x: [0, -4, 4, -4, 4, 0],
@@ -73,45 +68,61 @@ const shakeAnimation = {
 };
 
 export default function Projects() {
+  const [filter, setFilter] = useState('Featured');
+
+  // Filter Logic: Default par sirf Live projects dikhenge!
+  const filteredProjects = projects.filter((project) => {
+    if (filter === 'Featured') return project.status === 'Live';
+    if (filter === 'Upcoming') return project.status === 'Coming Soon';
+    return true; // 'All'
+  });
+
   return (
     <section id="projects" className="py-20 scroll-mt-20">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Projects</h2>
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">Projects</h2>
       
-      {/* Managed grid layout for production responsive project frames */}
+      {/* Category Filter Tabs */}
+      <div className="flex justify-center gap-2 mb-10">
+        {['Featured', 'Upcoming', 'All'].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setFilter(tab)}
+            className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+              filter === tab
+                ? 'bg-blue-600 text-white shadow-md'
+                : 'bg-slate-800/40 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+            }`}
+          >
+            {tab === 'Featured' ? '🚀 Featured (Live)' : tab === 'Upcoming' ? '⏳ Roadmap' : '📦 All Projects'}
+          </button>
+        ))}
+      </div>
+
+      {/* Grid Layout */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => {
+        {filteredProjects.map((project, index) => {
           const isLive = project.status === "Live";
           
           return (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05, duration: 0.5 }}
-              
-              // Live ke liye scaling animation aur Coming Soon ke liye shaking/glow effect
-              whileHover={isLive ? { scale: 1.03 } : "hover"}
+              key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05, duration: 0.4 }}
+              whileHover={isLive ? { scale: 1.02 } : "hover"}
               variants={!isLive ? shakeAnimation : {}}
-              
-              className={`p-6 bg-white dark:bg-gray-900 border rounded-2xl shadow-sm flex flex-col justify-between transition-all duration-300 relative overflow-hidden group
-                ${isLive 
-                  ? 'border-gray-200 dark:border-gray-800 hover:border-blue-500/50 dark:hover:border-blue-400/50 hover:shadow-lg hover:shadow-blue-500/5' 
-                  : 'border-gray-200 dark:border-gray-800/80 opacity-75 hover:opacity-100 hover:border-amber-500/40 dark:hover:border-amber-400/30 hover:shadow-md hover:shadow-amber-500/5 cursor-not-allowed'
-                }`}
+              className={`p-6 bg-white dark:bg-gray-900 border rounded-2xl shadow-sm flex flex-col justify-between transition-all duration-300 relative overflow-hidden group ${
+                isLive 
+                  ? 'border-gray-200 dark:border-gray-800 hover:border-blue-500/50' 
+                  : 'border-gray-200 dark:border-gray-800/80 opacity-80 cursor-not-allowed'
+              }`}
             >
-              {/* Background glowing indicator for coming soon */}
-              {!isLive && (
-                <div className="absolute -inset-px bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              )}
-
               <div className="relative z-10">
-                <span className={`text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full 
-                  ${isLive 
+                <span className={`text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full ${
+                  isLive 
                     ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
-                    : "bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300"
-                  }`}
-                >
+                    : "bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400"
+                }`}>
                   {project.status}
                 </span>
                 
@@ -125,12 +136,12 @@ export default function Projects() {
                     href={project.link} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="text-blue-500 dark:text-blue-400 font-medium text-sm hover:underline flex items-center gap-1"
+                    className="text-blue-500 font-medium text-sm hover:underline flex items-center gap-1"
                   >
                     View Project &rarr;
                   </a>
                 ) : (
-                  <span className="text-xs text-gray-400 dark:text-gray-500 font-medium flex items-center gap-1 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
+                  <span className="text-xs text-gray-400 font-medium flex items-center gap-1">
                     🔒 Under Development
                   </span>
                 )}
