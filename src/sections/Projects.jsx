@@ -24,7 +24,7 @@ const projects = [
     title: "Task Matrix Engine", 
     desc: "Enterprise-grade Kanban workflow manager featuring smooth drag-and-drop mechanics, JWT multi-user authentication, priority filtering, and live state synchronization with MongoDB Atlas.", 
     status: "Live",
-    link: "https://your-task-matrix.vercel.app" // Apne live Vercel link se replace kar lena
+    link: "https://task-matrix-engine.vercel.app/" 
   },
   { 
     title: "Jarvis AI Assistant", 
