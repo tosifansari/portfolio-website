@@ -82,108 +82,104 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 px-4 w-full">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-center mb-10 tracking-tight text-slate-900 dark:text-white transition-colors duration-300">
-          Projects
-        </h2>
+    <section id="projects" className="py-12 w-full">
+      <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-8 tracking-tight">
+        Projects
+      </h2>
 
-        {/* Tab Buttons */}
-        <div className="flex justify-center items-center gap-3 mb-12 flex-wrap">
-          <button
-            onClick={() => setActiveTab('live')}
-            className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
-              activeTab === 'live'
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                : 'bg-slate-200/80 dark:bg-slate-800/50 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300/80 dark:border-slate-700/50'
-            }`}
-          >
-            🚀 Live Apps
-          </button>
-
-          <button
-            onClick={() => setActiveTab('upcoming')}
-            className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
-              activeTab === 'upcoming'
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                : 'bg-slate-200/80 dark:bg-slate-800/50 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300/80 dark:border-slate-700/50'
-            }`}
-          >
-            ⏳ Roadmap (Upcoming)
-          </button>
-
-          <button
-            onClick={() => setActiveTab('all')}
-            className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
-              activeTab === 'all'
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                : 'bg-slate-200/80 dark:bg-slate-800/50 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300/80 dark:border-slate-700/50'
-            }`}
-          >
-            📦 All Projects
-          </button>
-        </div>
-
-        {/* Grid Container */}
-        <motion.div 
-          layout 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      {/* Tabs */}
+      <div className="flex justify-center items-center gap-3 mb-10 flex-wrap">
+        <button
+          onClick={() => setActiveTab('live')}
+          className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
+            activeTab === 'live'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 ring-2 ring-blue-500/40'
+              : 'bg-gray-200/80 dark:bg-gray-800/60 hover:bg-gray-300 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300/80 dark:border-gray-700/50'
+          }`}
         >
-          <AnimatePresence mode="popLayout">
-            {getProjectsToDisplay().map((project) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="group relative bg-white dark:bg-[#0f172a]/90 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 dark:hover:border-blue-500/50 rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-xl dark:shadow-none hover:shadow-blue-500/10 transition-colors duration-300"
-              >
-                <div>
-                  <div className="mb-4">
-                    {project.status === 'LIVE' ? (
-                      <span className="inline-flex items-center text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 px-2.5 py-1 rounded-md uppercase tracking-wider">
-                        LIVE
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center text-[10px] font-bold text-amber-600 dark:text-amber-300 bg-amber-50 dark:bg-amber-500/10 border border-amber-300/60 dark:border-amber-500/30 px-2.5 py-1 rounded-md uppercase tracking-wider shadow-[0_0_12px_rgba(245,158,11,0.2)] animate-pulse">
-                        COMING SOON
-                      </span>
-                    )}
-                  </div>
+          🚀 Live Apps
+        </button>
 
-                  <h3 className="text-lg font-bold mb-2 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
-                    {project.title}
-                  </h3>
+        <button
+          onClick={() => setActiveTab('upcoming')}
+          className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
+            activeTab === 'upcoming'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 ring-2 ring-blue-500/40'
+              : 'bg-gray-200/80 dark:bg-gray-800/60 hover:bg-gray-300 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300/80 dark:border-gray-700/50'
+          }`}
+        >
+          ⏳ Roadmap (Upcoming)
+        </button>
 
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-6 font-normal">
-                    {project.description}
-                  </p>
-                </div>
+        <button
+          onClick={() => setActiveTab('all')}
+          className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
+            activeTab === 'all'
+              ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30 ring-2 ring-blue-500/40'
+              : 'bg-gray-200/80 dark:bg-gray-800/60 hover:bg-gray-300 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300/80 dark:border-gray-700/50'
+          }`}
+        >
+          📦 All Projects
+        </button>
+      </div>
 
-                <div>
+      {/* Cards Grid */}
+      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <AnimatePresence mode="popLayout">
+          {getProjectsToDisplay().map((project) => (
+            <motion.div
+              key={project.id}
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
+              className="group relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-2xl transition-all duration-300 hover:border-amber-500/50 hover:shadow-amber-500/15"
+            >
+              <div>
+                <div className="mb-4">
                   {project.status === 'LIVE' ? (
-                    <a
-                      href={project.link}
-                      target={project.link !== '#' ? '_blank' : '_self'}
-                      rel="noreferrer"
-                      className="inline-flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 gap-1 transition-all duration-200 group-hover:translate-x-1"
-                    >
-                      View Project &rarr;
-                    </a>
+                    <span className="inline-flex items-center text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 px-2.5 py-1 rounded-md uppercase tracking-wider">
+                      LIVE
+                    </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400/90 font-medium">
-                      🔒 Under Development
+                    /* Golden Glowing Badge */
+                    <span className="inline-flex items-center text-[10px] font-bold text-amber-500 dark:text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 rounded-md uppercase tracking-wider shadow-[0_0_12px_rgba(245,158,11,0.25)] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.6)] group-hover:bg-gradient-to-r group-hover:from-amber-500/20 group-hover:to-yellow-500/20 group-hover:border-amber-400 transition-all duration-300">
+                      COMING SOON
                     </span>
                   )}
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      </div>
+
+                <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors duration-200">
+                  {project.title}
+                </h3>
+
+                <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-6 font-normal">
+                  {project.description}
+                </p>
+              </div>
+
+              <div>
+                {project.status === 'LIVE' ? (
+                  <a
+                    href={project.link}
+                    target={project.link !== '#' ? '_blank' : '_self'}
+                    rel="noreferrer"
+                    className="inline-flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 gap-1 transition-all duration-200 group-hover:translate-x-1"
+                  >
+                    View Project &rarr;
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400 group-hover:text-amber-300 font-medium transition-colors">
+                    🔒 Under Development
+                  </span>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </section>
   );
 }
