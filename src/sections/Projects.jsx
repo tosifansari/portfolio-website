@@ -6,30 +6,35 @@ export default function Projects() {
 
   const liveProjects = [
     {
+      id: "portfolio",
       title: "Portfolio Website",
       status: "LIVE",
       description: "My personal portfolio built with React, Tailwind CSS, and Framer Motion.",
       link: "#"
     },
     {
+      id: "nexus",
       title: "Nexus Core AI Engine",
       status: "LIVE",
       description: "A premium Full-Stack AI Chat platform featuring secure user authentication schemas, cloud database storage, and structured Llama-3 model responses.",
       link: "#"
     },
     {
+      id: "vintage",
       title: "Vintage Core Store",
       status: "LIVE",
       description: "A full-stack MERN e-commerce application featuring complete authentication pipelines, product catalog routing, state management, and live order ledgers.",
       link: "#"
     },
     {
+      id: "task-matrix",
       title: "Task Matrix Engine",
       status: "LIVE",
       description: "Enterprise-grade Kanban workflow manager featuring smooth drag-and-drop mechanics, JWT multi-user authentication, priority filtering, and live state synchronization with MongoDB Atlas.",
       link: "#"
     },
     {
+      id: "aether",
       title: "AETHER (Real-Time Chat Engine)",
       status: "LIVE",
       description: "A sleek 1-on-1 direct messaging platform powered by Socket.IO featuring real-time chat, custom handle system (#tag), live voice notes, image sharing, and interactive reactions.",
@@ -39,26 +44,31 @@ export default function Projects() {
 
   const upcomingProjects = [
     {
+      id: "jarvis",
       title: "Jarvis AI Assistant",
       status: "COMING SOON",
       description: "Autonomous voice companion featuring web & YouTube summarization, PDF analysis, real-time weather & news updates, persistent memory, and code explanation."
     },
     {
+      id: "interview",
       title: "AI Interview Prep Platform",
       status: "COMING SOON",
       description: "AI evaluation engine featuring resume parsing, dynamically generated mock technical interview questions, interactive mock mode, and real-time performance feedback."
     },
     {
+      id: "expense",
       title: "Smart Expense Tracker",
       status: "COMING SOON",
       description: "Comprehensive financial dashboard with dynamic analytics charts, automated monthly reports, user authentication, and complete CRUD transaction management."
     },
     {
+      id: "url",
       title: "URL Shortener & Analytics",
       status: "COMING SOON",
       description: "Full-stack link management tool featuring custom short links, real-time click analytics dashboard, dynamic QR code generation, and protected user routes."
     },
     {
+      id: "notes",
       title: "Markdown Notes App",
       status: "COMING SOON",
       description: "Rich text note-taking workspace supporting full Markdown rendering, tag-based taxonomy categorization, global search, and instant persistence."
@@ -72,9 +82,9 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 px-4 w-full transition-colors duration-300">
+    <section id="projects" className="py-20 px-4 w-full">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-center mb-10 tracking-tight text-slate-900 dark:text-white">
+        <h2 className="text-4xl font-extrabold text-center mb-10 tracking-tight text-slate-900 dark:text-white transition-colors duration-300">
           Projects
         </h2>
 
@@ -85,7 +95,7 @@ export default function Projects() {
             className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
               activeTab === 'live'
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                : 'bg-slate-200/60 dark:bg-slate-800/40 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-400 border border-slate-300 dark:border-slate-700/50'
+                : 'bg-slate-200/80 dark:bg-slate-800/50 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300/80 dark:border-slate-700/50'
             }`}
           >
             🚀 Live Apps
@@ -96,7 +106,7 @@ export default function Projects() {
             className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
               activeTab === 'upcoming'
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                : 'bg-slate-200/60 dark:bg-slate-800/40 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-400 border border-slate-300 dark:border-slate-700/50'
+                : 'bg-slate-200/80 dark:bg-slate-800/50 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300/80 dark:border-slate-700/50'
             }`}
           >
             ⏳ Roadmap (Upcoming)
@@ -107,7 +117,7 @@ export default function Projects() {
             className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
               activeTab === 'all'
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                : 'bg-slate-200/60 dark:bg-slate-800/40 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-400 border border-slate-300 dark:border-slate-700/50'
+                : 'bg-slate-200/80 dark:bg-slate-800/50 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300/80 dark:border-slate-700/50'
             }`}
           >
             📦 All Projects
@@ -115,37 +125,40 @@ export default function Projects() {
         </div>
 
         {/* Grid Container */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence>
-            {getProjectsToDisplay().map((project, idx) => (
+        <motion.div 
+          layout 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <AnimatePresence mode="popLayout">
+            {getProjectsToDisplay().map((project) => (
               <motion.div
-                key={project.title}
+                key={project.id}
                 layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3, delay: idx * 0.05 }}
-                whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                className="group relative bg-white/80 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800/80 hover:border-blue-500/50 rounded-2xl p-6 flex flex-col justify-between transition-all shadow-md hover:shadow-xl hover:shadow-blue-500/10"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="group relative bg-white dark:bg-[#0f172a]/90 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 dark:hover:border-blue-500/50 rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-xl dark:shadow-none hover:shadow-blue-500/10 transition-colors duration-300"
               >
                 <div>
                   <div className="mb-4">
                     {project.status === 'LIVE' ? (
-                      <span className="inline-flex items-center text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-300 dark:border-emerald-500/20 px-2.5 py-1 rounded-md uppercase tracking-wider">
+                      <span className="inline-flex items-center text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 px-2.5 py-1 rounded-md uppercase tracking-wider">
                         LIVE
                       </span>
                     ) : (
-                      <span className="inline-flex items-center text-[10px] font-bold text-amber-600 dark:text-amber-300 bg-amber-50 dark:bg-amber-500/10 border border-amber-300 dark:border-amber-500/30 px-2.5 py-1 rounded-md uppercase tracking-wider shadow-[0_0_15px_rgba(245,158,11,0.2)] animate-pulse">
+                      <span className="inline-flex items-center text-[10px] font-bold text-amber-600 dark:text-amber-300 bg-amber-50 dark:bg-amber-500/10 border border-amber-300/60 dark:border-amber-500/30 px-2.5 py-1 rounded-md uppercase tracking-wider shadow-[0_0_12px_rgba(245,158,11,0.2)] animate-pulse">
                         COMING SOON
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-lg font-bold mb-2 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-lg font-bold mb-2 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
                     {project.title}
                   </h3>
 
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-6 font-normal">
                     {project.description}
                   </p>
                 </div>
@@ -156,12 +169,12 @@ export default function Projects() {
                       href={project.link}
                       target={project.link !== '#' ? '_blank' : '_self'}
                       rel="noreferrer"
-                      className="inline-flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 gap-1 transition-all group-hover:translate-x-1"
+                      className="inline-flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 gap-1 transition-all duration-200 group-hover:translate-x-1"
                     >
                       View Project &rarr;
                     </a>
                   ) : (
-                    <span className="inline-flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400/80 font-medium">
+                    <span className="inline-flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400/90 font-medium">
                       🔒 Under Development
                     </span>
                   )}
