@@ -72,10 +72,9 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 px-4 w-full">
+    <section id="projects" className="py-20 px-4 w-full transition-colors duration-300">
       <div className="max-w-6xl mx-auto">
-        {/* Title */}
-        <h2 className="text-4xl font-extrabold text-center mb-10 tracking-tight">
+        <h2 className="text-4xl font-extrabold text-center mb-10 tracking-tight text-slate-900 dark:text-white">
           Projects
         </h2>
 
@@ -86,7 +85,7 @@ export default function Projects() {
             className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
               activeTab === 'live'
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                : 'bg-slate-800/40 hover:bg-slate-800/80 text-slate-400 hover:text-white border border-slate-700/50'
+                : 'bg-slate-200/60 dark:bg-slate-800/40 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-400 border border-slate-300 dark:border-slate-700/50'
             }`}
           >
             🚀 Live Apps
@@ -97,7 +96,7 @@ export default function Projects() {
             className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
               activeTab === 'upcoming'
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                : 'bg-slate-800/40 hover:bg-slate-800/80 text-slate-400 hover:text-white border border-slate-700/50'
+                : 'bg-slate-200/60 dark:bg-slate-800/40 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-400 border border-slate-300 dark:border-slate-700/50'
             }`}
           >
             ⏳ Roadmap (Upcoming)
@@ -108,7 +107,7 @@ export default function Projects() {
             className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 flex items-center gap-2 ${
               activeTab === 'all'
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                : 'bg-slate-800/40 hover:bg-slate-800/80 text-slate-400 hover:text-white border border-slate-700/50'
+                : 'bg-slate-200/60 dark:bg-slate-800/40 hover:bg-slate-300 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-400 border border-slate-300 dark:border-slate-700/50'
             }`}
           >
             📦 All Projects
@@ -116,10 +115,7 @@ export default function Projects() {
         </div>
 
         {/* Grid Container */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence>
             {getProjectsToDisplay().map((project, idx) => (
               <motion.div
@@ -130,46 +126,42 @@ export default function Projects() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                className="group relative bg-slate-900/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-800/80 hover:border-blue-500/50 rounded-2xl p-6 flex flex-col justify-between transition-colors shadow-lg hover:shadow-xl hover:shadow-blue-500/10"
+                className="group relative bg-white/80 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800/80 hover:border-blue-500/50 rounded-2xl p-6 flex flex-col justify-between transition-all shadow-md hover:shadow-xl hover:shadow-blue-500/10"
               >
                 <div>
-                  {/* Status Badges */}
                   <div className="mb-4">
                     {project.status === 'LIVE' ? (
-                      <span className="inline-flex items-center text-[10px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-md uppercase tracking-wider">
+                      <span className="inline-flex items-center text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-300 dark:border-emerald-500/20 px-2.5 py-1 rounded-md uppercase tracking-wider">
                         LIVE
                       </span>
                     ) : (
-                      <span className="inline-flex items-center text-[10px] font-bold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 rounded-md uppercase tracking-wider shadow-[0_0_15px_rgba(245,158,11,0.3)] animate-pulse">
+                      <span className="inline-flex items-center text-[10px] font-bold text-amber-600 dark:text-amber-300 bg-amber-50 dark:bg-amber-500/10 border border-amber-300 dark:border-amber-500/30 px-2.5 py-1 rounded-md uppercase tracking-wider shadow-[0_0_15px_rgba(245,158,11,0.2)] animate-pulse">
                         COMING SOON
                       </span>
                     )}
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-lg font-bold mb-2 group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-lg font-bold mb-2 text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {project.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-xs text-slate-400 leading-relaxed mb-6">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
                     {project.description}
                   </p>
                 </div>
 
-                {/* Footer Link */}
                 <div>
                   {project.status === 'LIVE' ? (
                     <a
                       href={project.link}
                       target={project.link !== '#' ? '_blank' : '_self'}
                       rel="noreferrer"
-                      className="inline-flex items-center text-xs font-semibold text-blue-400 hover:text-blue-300 gap-1 transition-all group-hover:translate-x-1"
+                      className="inline-flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 gap-1 transition-all group-hover:translate-x-1"
                     >
                       View Project &rarr;
                     </a>
                   ) : (
-                    <span className="inline-flex items-center gap-1.5 text-xs text-amber-400/80 font-medium">
+                    <span className="inline-flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400/80 font-medium">
                       🔒 Under Development
                     </span>
                   )}
