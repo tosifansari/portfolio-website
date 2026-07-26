@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function Projects() {
   const projects = [
+    // --- LIVE PROJECTS ---
     {
       title: "Portfolio Website",
       status: "LIVE",
@@ -33,38 +34,50 @@ export default function Projects() {
       description: "Enterprise-grade Kanban workflow manager featuring smooth drag-and-drop mechanics, JWT multi-user authentication, priority filtering, and live state synchronization with MongoDB Atlas.",
       link: "#"
     },
+
+    // --- UPCOMING PROJECTS ---
     {
-      title: "AI SaaS Platform",
+      title: "Jarvis AI Assistant",
       status: "COMING SOON",
-      description: "An advanced AI-powered software-as-a-service application."
+      description: "Autonomous voice companion featuring web & YouTube summarization, PDF analysis, real-time weather & news updates, persistent memory, and code explanation."
     },
     {
-      title: "Intelligent Chatbot",
+      title: "AI Interview Prep Platform",
       status: "COMING SOON",
-      description: "A smart AI chatbot trained to handle customized workflows."
+      description: "AI evaluation engine featuring resume parsing, dynamically generated mock technical interview questions, interactive mock mode, and real-time performance feedback."
+    },
+    {
+      title: "Smart Expense Tracker",
+      status: "COMING SOON",
+      description: "Comprehensive financial dashboard with dynamic analytics charts, automated monthly reports, user authentication, and complete CRUD transaction management."
+    },
+    {
+      title: "URL Shortener & Analytics",
+      status: "COMING SOON",
+      description: "Full-stack link management tool featuring custom short links, real-time click analytics dashboard, dynamic QR code generation, and protected user routes."
     }
   ];
 
-  // Parent Container Variant for Staggering Animation
+  // Container Variant for Staggering
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12
+        staggerChildren: 0.1
       }
     }
   };
 
-  // Individual Card Entrance Animation Variant
+  // Individual Card Entrance Variant
   const cardVariants = {
-    hidden: { opacity: 0, y: 35 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.45,
-        ease: [0.25, 0.1, 0.25, 1.0]
+        duration: 0.4,
+        ease: "easeOut"
       }
     }
   };
@@ -72,7 +85,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-12 w-full">
       <div className="max-w-6xl mx-auto px-4">
-        {/* Animated Title */}
+        {/* Title */}
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +96,7 @@ export default function Projects() {
           Projects
         </motion.h2>
 
-        {/* Staggered Grid Container */}
+        {/* Animated Projects Grid */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -96,7 +109,7 @@ export default function Projects() {
               key={idx}
               variants={cardVariants}
               whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className={`relative bg-[#0d1424] rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 ${
+              className={`relative bg-[#0d1424] rounded-2xl p-6 flex flex-col justify-between transition-colors duration-300 ${
                 project.status === 'COMING SOON'
                   ? 'border border-amber-500/40 hover:border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.1)] hover:shadow-[0_0_20px_rgba(245,158,11,0.25)]'
                   : 'border border-slate-800/80 hover:border-slate-700'
