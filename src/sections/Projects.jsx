@@ -17,21 +17,21 @@ export default function Projects() {
       title: "Nexus Core AI Engine",
       status: "LIVE",
       description: "A premium Full-Stack AI Chat platform featuring secure user authentication schemas, cloud database storage, and structured Llama-3 model responses.",
-      link: "#"
+      link: "https://chat-engine-five.vercel.app/"
     },
     {
       id: "vintage",
       title: "Vintage Core Store",
       status: "LIVE",
       description: "A full-stack MERN e-commerce application featuring complete authentication pipelines, product catalog routing, state management, and live order ledgers.",
-      link: "#"
+      link: "https://vintage-core-store.vercel.app/"
     },
     {
       id: "task-matrix",
       title: "Task Matrix Engine",
       status: "LIVE",
       description: "Enterprise-grade Kanban workflow manager featuring smooth drag-and-drop mechanics, JWT multi-user authentication, priority filtering, and live state synchronization with MongoDB Atlas.",
-      link: "#"
+      link: "https://task-matrix.vercel.app/"
     },
     {
       id: "aether",
