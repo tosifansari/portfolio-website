@@ -17,7 +17,7 @@ export default function Projects() {
       title: "Nexus Core AI Engine",
       status: "LIVE",
       description: "A premium Full-Stack AI Chat platform featuring secure user authentication schemas, cloud database storage, and structured Llama-3 model responses.",
-      link: "https://chat-engine-five.vercel.app/"
+      link: "https://ai-chat-bot-delta-lilac.vercel.app/"
     },
     {
       id: "vintage",
