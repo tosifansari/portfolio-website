@@ -31,7 +31,7 @@ export default function Projects() {
       title: "Task Matrix Engine",
       status: "LIVE",
       description: "Enterprise-grade Kanban workflow manager featuring smooth drag-and-drop mechanics, JWT multi-user authentication, priority filtering, and live state synchronization with MongoDB Atlas.",
-      link: "https://task-matrix.vercel.app/"
+      link: "https://task-matrix-engine.vercel.app/"
     },
     {
       id: "aether",
